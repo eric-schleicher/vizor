@@ -139,8 +139,10 @@ AssetLoader.prototype.loadAssetsForGraph = function(graph) {
 	})
 
 	// if there are no assets to load, just resolve the promise
-	if (!assetTypes.length)
+	if (!assetTypes.length) {
+		this.emit('progress', 100)
 		dfd.resolve()
+	}
 
 	return dfd.promise
 }
